@@ -1,0 +1,5 @@
+Just a program to organize and keep track of files whether they are digital
+or physical. If they are physical the program should be able to tell you where
+they are or if anyone is currently using them. If they digital files it should
+print the directory they are in and issue command to open the file browser to
+that location.

@@ -1,0 +1,4 @@
+1) User enters name of file and puts in the system.
+2) User does a specific search for a certain file/files.
+3) User checks out a physical file.
+

@@ -1,0 +1,9 @@
+User adds a document
+User removes a document
+User adds music
+User removes music
+User adds a video/videos
+User removes video/videos
+User does a search for any of the above by name
+User does a search by other identifying information
+
