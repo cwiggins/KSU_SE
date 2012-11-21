@@ -3,29 +3,15 @@
 using std::cout;
 using std::endl;
 
-CountingObserver::CountingObserver(UpperCaseMonitor *s) {
-	_subject = s;
-	_subject->attach(this);
-}
-
 CountingObserver::CountingObserver() {
-	// default constructor
-}
-
-CountingObserver::~CountingObserver() {
-	_subject->detach(this);
+	count = 0;
 }
 
 void CountingObserver::update(Observable *ChangedState) {
-	if(ChangedState = _subject)
-		show_data();
+	count+=1;
 }
 
 void CountingObserver::show_data() {
-	char value = _subject->get_state();
 
-	count+=1;
-
-	cout << "Number of State Changes is: " << count << " and most recent state \
-		change is: " << value << endl;
+	cout << endl << "Number of State Changes is: " << count << endl;
 }
