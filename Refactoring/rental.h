@@ -1,3 +1,7 @@
+/*  Name: Curtiss J Wiggins
+ *  Project: Refactoring
+ *  Course: cs33901
+ */
 #ifndef RENTAL_H
 #define RENTAL_H
 
@@ -14,6 +18,9 @@ class Rental
     // Accessors
     int   getDaysRented() { return _days_rented; }
     Movie getMovie()      { return _movie;       }
+
+	double getCharge();
+	int getFrequentRenterPoints();
 
     // Mutators
 

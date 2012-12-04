@@ -1,3 +1,7 @@
+/*  Name: Curtiss j Wiggins
+ *  Project: Refactoring
+ *  Course: cs33901*/
+
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
@@ -25,6 +29,8 @@ class Customer
    std::string statement();
 
   private:
+    double getTotalCharge();
+	int getTotalFrequentRenterPoints();
     std::string         _name;
     std::vector<Rental> _rentals;
 

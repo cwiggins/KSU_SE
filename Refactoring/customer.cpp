@@ -1,4 +1,7 @@
 /*  Customer implementation
+ *  Name: Curtiss J Wiggins
+ *  Project: Refactoring
+ *  Course: cs33901
  */
 
 #include "customer.h"
@@ -15,7 +18,7 @@ using std::vector;
 
 string Customer::statement()
 {
-  double totalAmount          = 0;
+  //double totalAmount          = 0;
   int    frequentRenterPoints = 0;
 
   // Init result string
@@ -26,61 +29,54 @@ string Customer::statement()
   for (vector<Rental>::iterator it = _rentals.begin();
                                 it != _rentals.end(); ++it)
   {
-      double thisAmount = 0;
-      Rental& each = *it;
-      switch(each.getMovie().getPriceCode())
-      {
-        case Movie::REGULAR:
-                thisAmount += 2;
-                if (each.getDaysRented() > 2)
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
-                break;
-        case Movie::NEW_RELEASE:
-                thisAmount += each.getDaysRented() * 3;
-                break;
-        case Movie::CHILDRENS:
-                thisAmount += 1.5;
-                if (each.getDaysRented() > 3)
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
-                break;
-      }
-        // Add frequent renter's points
-        ++frequentRenterPoints;
+      Rental& aRental = *it;
 
-        // Add bonus for new release rental
-        if ( each.getMovie().getPriceCode() == Movie::NEW_RELEASE &&
-             each.getDaysRented() > 1 )
-            ++frequentRenterPoints;
-       
+	 // frequentRenterPoints += aRental.getFrequentRenterPoints();
         // Include in result
         result += "\t";
-        result += each.getMovie().getTitle();
+        result += aRental.getMovie().getTitle();
         result += "\t";
 
         // Convert int to a string.
         // Output the int object into the output string stream.
         std::ostringstream out_str_stream;
-        out_str_stream << thisAmount;
+        out_str_stream << aRental.getCharge();
         result += out_str_stream.str();
         result += "\n";
-        totalAmount += thisAmount;
     }
     result += "Amount owed is: ";
 
      // Convert int to a string.
      // Output the int object into the output string stream.
     std::ostringstream out_str_stream;
-    out_str_stream << totalAmount;
+    out_str_stream << getTotalCharge();
     result += out_str_stream.str();
     result += "\n";
     result += "You earned: ";
     std::ostringstream out_str_stream2;
-    out_str_stream2 << frequentRenterPoints;
+    out_str_stream2 << getTotalFrequentRenterPoints();
     result += out_str_stream2.str();
     result += " frequent renter points\n";
 
     return result;
 }
 
+double Customer::getTotalCharge() {
+	double subTotal = 0;
+	for(vector<Rental>::iterator it = _rentals.begin(); it != _rentals.end(); ++it)
+	{
+		Rental& aRental = *it;
+		subTotal += aRental.getCharge();
+	}
+	return subTotal;
+}
 
-
+int Customer::getTotalFrequentRenterPoints() {
+	int frequentRenterPoints = 0;
+	for(vector<Rental>::iterator it = _rentals.begin(); it != _rentals.end(); ++it)
+	{
+		Rental& aRental = *it;
+		frequentRenterPoints += aRental.getFrequentRenterPoints();
+	}
+	return frequentRenterPoints;
+}
